@@ -17,8 +17,8 @@ body {
 main {
     display: grid;
     height: 100vh;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 4fr;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 4fr; */
     grid-template-areas:
         'sidebar header header header header'
         'sidebar projects projects projects sidebar-right';
@@ -43,11 +43,14 @@ header {
     border: 1px dotted black;
     background-color: crimson;
 }
+
 .sidebar-right {
     grid-area: sidebar-right;
     padding: 1rem;
 
     background-color: lightblue;
+    display: grid;
+    gap: 1rem;
 }
 
 .container {
@@ -62,7 +65,7 @@ header {
 }
 
 @media only screen and (min-width: 500px) {
-    .band {
+    .container {
         grid-template-columns: 1fr 1fr;
     }
     .item-1 {
@@ -77,8 +80,8 @@ header {
 }
 
 @media only screen and (min-width: 850px) {
-    .band {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+    .container {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
@@ -115,7 +118,7 @@ header {
 }
 
 .card p {
-    flex: 1; 
+    flex: 1;
     line-height: 1.4;
 }
 
