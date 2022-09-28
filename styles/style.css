@@ -17,31 +17,29 @@ body {
 main {
     display: grid;
     height: 100vh;
-    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 4fr; */
     grid-template-areas:
-        'sidebar header header header header'
-        'sidebar projects projects projects sidebar-right';
+        'header'
+        'projects'
+        'sidebar-right';
 }
 
 header {
     grid-area: header;
     padding: 1rem;
 }
+
 .sidebar {
     grid-area: sidebar;
     padding: 1rem;
-
-    border: 1px dotted black;
     background-color: darkseagreen;
+    display: none;
 }
 
 .projects {
     grid-area: projects;
     padding: 1rem;
 
-    border: 1px dotted black;
-    background-color: crimson;
+    background-color: red;
 }
 
 .sidebar-right {
@@ -54,36 +52,46 @@ header {
 }
 
 .container {
-    max-width: 1240px;
-    margin: 0 auto;
-
     display: grid;
-
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+    grid-gap: 1rem;
 }
 
-@media only screen and (min-width: 500px) {
+/* "only" - older browsers will ignore */
+/* bootstrap breakpoints */
+/* sm -> med */
+@media only screen and (min-width: 576px) {
+    main {
+        grid-template-areas:
+            'header header'
+            'sidebar projects'
+            'sidebar-right sidebar-right';
+    }
+    .sidebar {
+        display: block;
+    }
+}
+
+/* med -> ... */
+@media only screen and (min-width: 768px) {
+    main {
+        grid-template-areas:
+            'sidebar header header header header'
+            'sidebar projects projects projects sidebar-right';
+    }
     .container {
-        grid-template-columns: 1fr 1fr;
-    }
-    .item-1 {
-        grid-column: 1 / span 2;
-    }
-    .item-1 h1 {
-        font-size: 30px;
-    }
-    .item-2 {
-        grid-column: span 2;
+        
     }
 }
 
-@media only screen and (min-width: 850px) {
-    .container {
-        grid-template-columns: repeat(4, 1fr);
+/* large -> ... */
+/* @media only screen and (min-width: 992px) {
+    main {
+        grid-template-areas:
+            'sidebar header header header header'
+            'sidebar projects projects projects sidebar-right';
     }
-}
+} */
 
 .card {
     min-height: 100%;
@@ -111,6 +119,7 @@ header {
     justify-content: space-between;
     flex-direction: column;
 }
+
 .card .thumb {
     padding-bottom: 60%;
     background-size: cover;
